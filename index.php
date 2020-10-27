@@ -13,16 +13,26 @@
 
 if( isset( $_POST['submit'] )) {
 
+  //Get Data from Input fild
   $name = $_POST["name"];
   $email = $_POST["email"];
 
   $valid_email = filter_var( $email, FILTER_VALIDATE_EMAIL);
 
   $pass = $_POST["password"];
+
   $cell = $_POST["cell"];
+
+  //get Data from Select option Tag
   $select = $_POST["select"];
+
+  //Get data from Radio Button Input tag
   $gender = $_POST["gender"];
+
+  //checkBox Input tag
   $check = $_POST["check"];
+
+  //Get image data from Input Tag
    $file = $_FILES['file'];
 
    //image name
@@ -39,7 +49,7 @@ if( isset( $_POST['submit'] )) {
     //end data of array
     $ext = end($extension_array);
 
-    //encript name of image
+    //encrypted name of image
    $encript_name = md5($rand_dom).'.'.strtolower($ext);
 
    move_uploaded_file( $img_tmpname, 'photos/'.$encript_name);
