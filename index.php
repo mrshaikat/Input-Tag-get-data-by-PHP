@@ -23,6 +23,12 @@ if( isset( $_POST['submit'] )) {
   $select = $_POST["select"];
   $gender = $_POST["gender"];
   $check = $_POST["check"];
+   $file = $_FILES['file'];
+   $img_name = $file['name'];
+   $img_tmpname = $file['tmp_name'];
+
+   move_uploaded_file( $img_tmpname, 'photos/'.$img_name);
+
 
 
 
@@ -56,7 +62,7 @@ if( isset( $_POST['submit'] )) {
   <hr>
 
 
-  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" >
     <table>
       <tr>
         <td>Name</td>
@@ -113,6 +119,16 @@ if( isset( $_POST['submit'] )) {
 
           <input name="check[]" value="D" type="checkbox" id="optionn"><label for="optionn">Dog</label>
 
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>
+          Upload Profile 
+        </td>
+        <td>
+          <input name="file" type="file">
         </td>
       </tr>
 
