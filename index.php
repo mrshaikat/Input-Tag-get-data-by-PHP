@@ -24,10 +24,25 @@ if( isset( $_POST['submit'] )) {
   $gender = $_POST["gender"];
   $check = $_POST["check"];
    $file = $_FILES['file'];
+
+   //image name
    $img_name = $file['name'];
+   //img temp name
    $img_tmpname = $file['tmp_name'];
 
-   move_uploaded_file( $img_tmpname, 'photos/'.$img_name);
+   //random number image name
+   $rand_dom = time().rand().$img_name;
+
+   //get extension of image using explode funcetion
+    $extension_array = explode('.',$img_name );
+
+    //end data of array
+    $ext = end($extension_array);
+
+    //encript name of image
+   $encript_name = md5($rand_dom).'.'.strtolower($ext);
+
+   move_uploaded_file( $img_tmpname, 'photos/'.$encript_name);
 
 
 
